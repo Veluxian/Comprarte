@@ -10,7 +10,7 @@ from .models import Obras,Estado
 
 def main(request):
     context={}
-    if request.user.is_autenticated :
+    if request.user.is_authenticated :
         context["username"] = request.user.username
     return render(request, 'cliente/main.html', context)
 
