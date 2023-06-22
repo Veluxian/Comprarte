@@ -44,7 +44,7 @@ ROOT_URLCONF = 'ComprArte.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / "Templates",],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -56,6 +56,8 @@ TEMPLATES = [
         },
     },
 ]
+LOGIN_REDIRECT_URL ="listaObra"
+LOGOUT_REDIRECT_URL = "main"
 
 WSGI_APPLICATION = 'ComprArte.wsgi.application'
 

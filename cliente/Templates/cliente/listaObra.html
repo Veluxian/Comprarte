@@ -1,0 +1,36 @@
+{% extends 'cliente/base.html' %}
+{% load static %}
+{% block contenido %}
+<div class="container-fluid mt-5 bg-white scrollpsy-test">
+  <div class="row justify-content-center">
+    <div class="col-3 mt-5">
+        <h1>Tus obras de arte</h1>
+        <div>
+          <a class="btn btn-primary" href="{% url 'agregarObra' %}" role="button"> Agregar </a> 
+        </div>
+    </div>
+  </div>
+  {% if articulos %}
+    {% for articulo in articulos %}
+    <div class="d-flex flex-row align-items-center mt-3 ms-3 ">
+      <div class="p-2">
+        {{articulo.imagen}}
+      </div>
+      <div class="p-2">
+        {{articulo.Obras}}
+      </div>
+      <div class="p-2">
+        {{articulo.descripcion}}
+      </div>
+      <div class="p-2">
+        {{articulo.Obras}}
+      </div>
+      <div>
+        <a href="">Editar</a>
+      </div>
+    </div>
+    {% endfor%}
+  {% endif %}
+</div>
+
+{% endblock contenido %}
