@@ -9,6 +9,8 @@ urlpatterns = [
     path('miguelangel', views.miguelangel , name='miguelangel'),
     path('pablopicasso', views.pablopicasso , name='pablopicasso'),
     path('vicentvangogh', views.vicentvangogh , name='vicentvangogh'),
+    
     path('artista', views.artista , name='artista'),
-    path('Obras', views.Obras , name='Obras'),
+    path('obras', views.obras , name='obras'),
+    path('base', views.base , name='base'),
 ]

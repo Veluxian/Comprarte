@@ -1,10 +1,10 @@
 from django import forms
-from django.contrib.auth.models import cliente
+from django.contrib.auth.models import User
 from .models import Obras
 
 class clienteFormulario(forms.ModelForm):
     class Meta:
-        model = cliente
+        model = User
         fields = ["first_name","last_name","email",]
         labels = {'first_name':'Nombre',
                   'last_name':'Apellido',
