@@ -14,8 +14,7 @@ class Obras(models.Model):
     idObras = models.AutoField(primary_key=True)
     Obras = models.CharField(max_length=255)
     descripcion = models.TextField(default="")
-    imagen = models.ImageField(upload_to='cliente/static/Images')
-    tipo = models.IntegerChoices()
+    imagen = models.ImageField(upload_to='img/')
     idUsuario = models.ForeignKey(User,on_delete=models.CASCADE)
     estado = models.ForeignKey('Estado', on_delete=models.CASCADE,default=1)
 
