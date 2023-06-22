@@ -1,0 +1,25 @@
+.obras{
+    background-color: rgb(84, 156, 219);
+}
+
+.scrollpsy-test{
+    height: 600px;
+    overflow-y: auto;
+    border: 1px solid black;
+    width: 80%;
+    margin-left: 5%;
+}
+
+.imagen-obras{
+    min-height: 240px;
+    max-height: 300px;
+    min-width: 240px;
+}
+
+.conversor{
+    background-color: gray;
+}
+
+.convertidor{
+    color: yellow;
+}
