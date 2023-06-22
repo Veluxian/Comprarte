@@ -59,10 +59,18 @@ def miguelangel(request):
 
 def pablopicasso(request):
     context={}
+    if request.user.is_authenticated :
+        context["username"] = request.user.username
+    articulos = Obras.objects.filter(idUsuario=request.user)
+    context["articulos"] = articulos
     return render(request, 'cliente/pablopicasso.html', context)
 
 def vicentvangogh(request):
     context={}
+    if request.user.is_authenticated :
+        context["username"] = request.user.username
+    articulos = Obras.objects.filter(idUsuario=request.user)
+    context["articulos"] = articulos
     return render(request, 'cliente/vicentvangogh.html', context)
 
 def artista(request):
