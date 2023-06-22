@@ -1,263 +1,54 @@
 {% extends 'cliente/base.html' %}
 {% load static %}
-{% block contenido %}   
-    <div class="conteiner-fluid mt-5 bg-white scrollpsy-test">
-        <!--primer modal-->
-        <div class="d-flex flex-row align-items-center mt-3 ms-3">
-            <div class="p-2">
-                <img src="{% static 'Images/obras vincent van gogh/iglesia Auvers-sur-Oise.jpg' %}" class="img-fluid imagen-obras" alt="david">
-            </div>
-            <div class="p-2">
-                <p> esta es una prueba para la tarea</p>
-            </div>
-            <div class="ms-auto p-2">
-                
-                <button type="button" class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#David-MA">
-                    Ver más
-                </button>
-                
-                <div class="modal fade" id="David-MA" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="exampleModalLabel">El David $7.1M CLP</h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <div class="container-fluid">
-                                    <div class="row justify-content-center">
-                                        <div class="col">
-                                            <img src="{% static 'Images/obras vincent van gogh/iglesia Auvers-sur-Oise.jpg' %}" class="img-fluid" alt="adonis">
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col">
-                                            <p> esta es una prueba solamente para el trabajo, por favor inserte aqui el texto</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                                <button type="button" class="btn btn-primary">Comprar</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+{% block contenido %}
+<div class="conteiner-fluid mt-5 bg-secondary">
+    <div class="row justify-content-center">
+        <div class="col-3 mt-3 mb-3 ms-3 ">
+            <select class="form-select" aria-label="Default select tipoarte">
+                <option selected>Selecciona el tipo de arte</option>
+                <option value="1">Cuadro</option>
+                <option value="2">Escultura</option>
+                <option value="3">Otro</option>
+            </select>
         </div>
-        <!--segundo modal-->
-        <div class="d-flex flex-row align-items-center mt-3 ms-3">
-            <div class="p-2">
-                <img src="{% static 'Images/obras vincent van gogh/la cosecha.jpg' %}" class="img-fluid imagen-obras" alt="david">
-            </div>
-            <div class="p-2">
-                <p> esta es una prueba para la tarea</p>
-            </div>
-            <div class="ms-auto p-2">
-                
-                <button type="button" class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#centauro-MA">
-                    Ver más
-                </button>
-                
-                <div class="modal fade" id="centauro-MA" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="exampleModalLabel">centauromaquia $7.2M CLP</h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <div class="container-fluid">
-                                    <div class="row justify-content-center">
-                                        <div class="col">
-                                            <img src="{% static 'Images/obras vincent van gogh/la cosecha.jpg' %}" class="img-fluid" alt="adonis">
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col">
-                                            <p> esta es una prueba solamente para el trabajo, por favor inserte aqui el texto</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                                <button type="button" class="btn btn-primary">Comprar</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>    
-        <!--tercer modal-->
-        <div class="d-flex flex-row align-items-center mt-3 ms-3">
-            <div class="p-2">
-                <img src="{% static 'Images/obras vincent van gogh/Los girasoles.jpg' %}" class="img-fluid imagen-obras" alt="david">
-            </div>
-            <div class="p-2">
-                <p> esta es una prueba para la tarea</p>
-            </div>
-            <div class="ms-auto p-2">
-                
-                <button type="button" class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#creacion-MA">
-                    Ver más
-                </button>
-                
-                <div class="modal fade" id="creacion-MA" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="exampleModalLabel">La creacion $7.1M CLP</h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <div class="container-fluid">
-                                    <div class="row justify-content-center">
-                                        <div class="col">
-                                            <img src="{% static 'Images/obras vincent van gogh/Los girasoles.jpg' %}" class="img-fluid" alt="adonis">
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col">
-                                            <p> esta es una prueba solamente para el trabajo, por favor inserte aqui el texto</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                                <button type="button" class="btn btn-primary">Comprar</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="col-3 mt-3 mb-3 ms-3">
+            <a class="btn btn-primary" href=""> Buscar</a>
         </div>
-        <!--cuarto modal-->
+    </div>
+</div>
+<div class="conteiner-fluid mt-5 bg-white scrollpsy-test">
+{% if articulos %}
+    {% for articulo in articulos %}
         <div class="d-flex flex-row align-items-center mt-3 ms-3">
             <div class="p-2">
-                <img src="{% static 'Images/obras vincent van gogh/los lirios.jpg' %}" class="img-fluid imagen-obras" alt="david">
+                {{articulo.imagen}}
             </div>
             <div class="p-2">
-                <p> esta es una prueba para la tarea</p>
-            </div>
-            <div class="ms-auto p-2">
-                
-                <button type="button" class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#piedad-MA">
-                    Ver más
-                </button>
-                
-                <div class="modal fade" id="piedad-MA" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="exampleModalLabel">La piedad $7.1M CLP</h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <div class="container-fluid">
-                                    <div class="row justify-content-center">
-                                        <div class="col">
-                                            <img src="{% static 'Images/obras vincent van gogh/los lirios.jpg' %}" class="img-fluid" alt="adonis">
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col">
-                                            <p> esta es una prueba solamente para el trabajo, por favor inserte aqui el texto</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                                <button type="button" class="btn btn-primary">Comprar</button>
-                            </div>
+                {{articulo.descripcion}}
+              </div>
+              <div class="ms-auto p-2">
+                  <button type="button" class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#articulo.Obras">
+                Ver más
+            </button>
+            <div class="modal fade" id="articulo.Obras" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">{{ariculo.Obras}}</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--quinto modal-->
-        <div class="d-flex flex-row align-items-center mt-3 ms-3">
-            <div class="p-2">
-                <img src="{% static 'Images/obras vincent van gogh/noche estrellada .jpg' %}" class="img-fluid imagen-obras" alt="david">
-            </div>
-            <div class="p-2">
-                <p> esta es una prueba para la tarea</p>
-            </div>
-            <div class="ms-auto p-2">
-                
-                <button type="button" class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#madonna-MA">
-                    Ver más
-                </button>
-                
-                <div class="modal fade" id="madonna-MA" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="exampleModalLabel">Madonna $7.1M CLP</h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <div class="container-fluid">
-                                    <div class="row justify-content-center">
-                                        <div class="col">
-                                            <img src="{% static 'Images/obras vincent van gogh/noche estrellada .jpg' %}" class="img-fluid" alt="adonis">
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col">
-                                            <p> esta es una prueba solamente para el trabajo, por favor inserte aqui el texto</p>
-                                        </div>
+                        <div class="modal-body">
+                            <div class="container-fluid">
+                                <div class="row justify-content-center">
+                                    <div class="col">
+                                        {{articulo.imagen}}
                                     </div>
                                 </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                                <button type="button" class="btn btn-primary">Comprar</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--sexto modal-->
-        <div class="d-flex flex-row align-items-center mt-3 ms-3">
-            <div class="p-2">
-                <img src="{% static 'Images/obras vincent van gogh/trigal con cuervos.jpg' %}" class="img-fluid imagen-obras" alt="david">
-            </div>
-            <div class="p-2">
-                <p> esta es una prueba para la tarea</p>
-            </div>
-            <div class="ms-auto p-2">
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#moises-MA">
-                    Ver más
-                </button>
-                <div class="modal fade" id="moises-MA" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="exampleModalLabel">Moises $7.1M CLP</h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <div class="container-fluid">
-                                    <div class="row justify-content-center">
-                                        <div class="col">
-                                            <img src="{% static 'Images/obras vincent van gogh/trigal con cuervos.jpg' %}" class="img-fluid" alt="adonis">
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col">
-                                            <p> esta es una prueba solamente para el trabajo, por favor inserte aqui el texto</p>
-                                        </div>
+                                <div class="row">
+                                    <div class="col">
+                                        {{articulo.descripcion}}
                                     </div>
                                 </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                                <button type="button" class="btn btn-primary">Comprar</button>
                             </div>
                         </div>
                     </div>
@@ -265,6 +56,9 @@
             </div>
         </div>
     </div>
+    {% endfor %}
+{% endif %}
+</div>
     <div class="conteiner-fluid mt-3 conversor">
         <div class="row justify-content-center">
             <div class="col-6 mt-5 mb-5">

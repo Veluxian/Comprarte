@@ -1,269 +1,54 @@
 {% extends 'cliente/base.html' %}
 {% load static %}
 {% block contenido %}
+<div class="conteiner-fluid mt-5 bg-secondary">
+    <div class="row justify-content-center">
+        <div class="col-3 mt-3 mb-3 ms-3 ">
+            <select class="form-select" aria-label="Default select tipoarte">
+                <option selected>Selecciona el tipo de arte</option>
+                <option value="1">Cuadro</option>
+                <option value="2">Escultura</option>
+                <option value="3">Otro</option>
+            </select>
+        </div>
+        <div class="col-3 mt-3 mb-3 ms-3">
+            <a class="btn btn-primary" href=""> Buscar</a>
+        </div>
+    </div>
+</div>
 <div class="conteiner-fluid mt-5 bg-white scrollpsy-test">
-    <!--primer modal-->
-    <div class="d-flex flex-row align-items-center mt-3 ms-3">
-        <div class="p-2">
-            <img src="{% static 'Images/1.jpg' %}" class="img-fluid imagen-obras" alt="desnudo">
-        </div>
-        <div class="p-2">
-            <p> Marie-Thérèse Walter, joven a la que Picasso conoció mientras estaba casado con la bailarina Olga Khoklhova y que se convirtió en su amante con apenas 17 años. </p>
-        </div>
-        <div class="ms-auto p-2">
-            
-            <button type="button" class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#desnudo">
+{% if articulos %}
+    {% for articulo in articulos %}
+        <div class="d-flex flex-row align-items-center mt-3 ms-3">
+            <div class="p-2">
+                {{articulo.imagen}}
+            </div>
+            <div class="p-2">
+                {{articulo.descripcion}}
+              </div>
+              <div class="ms-auto p-2">
+                  <button type="button" class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#articulo.Obras">
                 Ver más
             </button>
-            
-            <div class="modal fade" id="desnudo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade" id="articulo.Obras" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="exampleModalLabel">Desnudo, hojas verdes y busto - 80 millones de euros</h1>
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">{{ariculo.Obras}}</h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
                             <div class="container-fluid">
                                 <div class="row justify-content-center">
                                     <div class="col">
-                                        <img src="{% static 'Images/1.jpg' %}" class="img-fluid" alt="desnudo">
+                                        {{articulo.imagen}}
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col">
-                                            <p> El artista pintó el cuadro poco después de cumplir 50 años, cuando el romance ya tenía cinco de historia, en uno de los mejores y más prolíficos momentos de su vida.
-                                                La obra es un retrato de Marie-Thérèse Walter, joven a la que Picasso conoció mientras estaba casado con la bailarina Olga Khoklhova y que se convirtió en su amante con apenas 17 años.</p>
-                                        </div>
+                                        {{articulo.descripcion}}
                                     </div>
                                 </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                                <button type="button" class="btn btn-primary">Comprar</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--segundo modal-->
-        
-        <div class="d-flex flex-row align-items-center mt-3 ms-3">
-            <div class="p-2">
-                <img src="{% static 'Images/2.jpg' %}" class="img-fluid imagen-obras" alt="chica">
-            </div>
-            <div class="p-2">
-                <p> La imagen es de Marie Thérèse Walter, amante de Picasso, mirándose en el espejo como algo que podría ser un reflejo de la vanidad o hasta del paso del tiempo. </p>
-            </div>
-            <div class="ms-auto p-2">
-                
-                <button type="button" class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#chica">
-                    Ver más
-                </button>
-                
-                <div class="modal fade" id="chica" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="exampleModalLabel">Chica frente a un espejo - 40 millones de euros</h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <div class="container-fluid">
-                                    <div class="row justify-content-center">
-                                        <div class="col">
-                                            <img src="{% static 'Images/2.jpg' %}" class="img-fluid" alt="chica">
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col">
-                                            <p> La obra es una mujer que mira a un espejo y la imagen que forma la base de la interpretación es diferente. La Dama se muestra en la pintura como una hermosa con piel suave y ojos grandes. Los colores fueron utilizados para intensificar la belleza de la mujer. </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                                <button type="button" class="btn btn-primary">Comprar</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>    
-        <!--tercer modal-->
-        
-        <div class="d-flex flex-row align-items-center mt-3 ms-3">
-            <div class="p-2">
-                <img src="{% static 'Images/3.jpeg' %}" class="img-fluid imagen-obras" alt="dora">
-            </div>
-            <div class="p-2">
-                <p> Pareja de Pablo Picasso Dora Maar. Este se considera la pintura menos hostil y más amable de Dora Maar y también una de las pinturas de Picasso más expresivas. </p>
-            </div>
-            <div class="ms-auto p-2">
-                
-                <button type="button" class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#dora">
-                    Ver más
-                </button>
-                
-                <div class="modal fade" id="dora" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="exampleModalLabel">DORA MAAR AU CHAT - </h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <div class="container-fluid">
-                                    <div class="row justify-content-center">
-                                        <div class="col">
-                                            <img src="{% static 'Images/3.jpeg' %}" class="img-fluid" alt="dora">
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col">
-                                            <p> La pintura representa a Dora Maar, la amante de Picasso, sentada en una silla y hay un pequeño gato sentado sobre sus hombros que algunos han descrito como una combinación de amenazante y divertido. </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                                <button type="button" class="btn btn-primary">Comprar</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--cuarto modal-->
-        
-        <div class="d-flex flex-row align-items-center mt-3 ms-3">
-            <div class="p-2">
-                <img src="{% static 'Images/4.jpg' %}" class="img-fluid imagen-obras" alt="llora">
-            </div>
-            <div class="p-2">
-                <p> El rostro de la mujer chillando que aparece en la obra está basado en Dora Maar, la artista y fotógrafa con quien Picasso mantuvo una relación amorosa. </p>
-            </div>
-            <div class="ms-auto p-2">
-                
-                <button type="button" class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#llora">
-                    Ver más
-                </button>
-                
-                <div class="modal fade" id="llora" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="exampleModalLabel">La mujer que llora - 1,7 millones de dólares</h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <div class="container-fluid">
-                                    <div class="row justify-content-center">
-                                        <div class="col">
-                                            <img src="{% static 'Images/4.jpg' %}" class="img-fluid" alt="llora">
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col">
-                                            <p> Obra con un claro símbolo contra la violencia del siglo XX. Fue hecha durante la Guerra Civil española (1936-1939). El rostro de la mujer chillando que aparece en la obra está basado en Dora Maar, la artista y fotógrafa con quien Picasso mantuvo una relación amorosa durante 10 años. Fue ella quien despertó el carácter más político del artista, y se convirtió así en una de sus principales musas. </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                                <button type="button" class="btn btn-primary">Comprar</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--quinto modal-->
-        
-        <div class="d-flex flex-row align-items-center mt-3 ms-3">
-            <div class="p-2">
-                <img src="{% static 'Images/5.jpg' %}" class="img-fluid imagen-obras" alt="mujeres">
-            </div>
-            <div class="p-2">
-                <p> "Dos mujeres leyendo” es un óleo sobre lienzo que el artista pinta, en el que se ve a dos mujeres disfrutando de la lectura conjunta de un libro. </p>
-            </div>
-            <div class="ms-auto p-2">
-                
-                <button type="button" class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#mujeres">
-                    Ver más
-                </button>
-                
-                <div class="modal fade" id="mujeres" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="exampleModalLabel">Dos mujeres leyendo - 22,93 millones de euros</h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <div class="container-fluid">
-                                    <div class="row justify-content-center">
-                                        <div class="col">
-                                            <img src="{% static 'Images/5.jpg' %}" class="img-fluid" alt="mujeres">
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col">
-                                            <p> Más allá de clasificaciones, esta pieza nos transmite una sensación de intimidad y relajación. La existencia de momentos para el disfrute personal, del sosiego a través de la lectura. </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                                <button type="button" class="btn btn-primary">Comprar</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--sexto modal-->
-        
-        <div class="d-flex flex-row align-items-center mt-3 ms-3">
-            <div class="p-2">
-                <img src="{% static 'Images/6.jpg' %}" class="img-fluid imagen-obras" alt="flor">
-            </div>
-            <div class="p-2">
-                <p> Obra claramente cubista en la que Picasso rompe con las formas de representación del espacio tradicionales. </p>
-            </div>
-            <div class="ms-auto p-2">
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#flor">
-                    Ver más
-                </button>
-                <div class="modal fade" id="flor" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="exampleModalLabel">Mujer con una flor - 35 millones de euros</h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <div class="container-fluid">
-                                    <div class="row justify-content-center">
-                                        <div class="col">
-                                            <img src="{% static 'Images/6.jpg' %}" class="img-fluid" alt="flor">
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col">
-                                            <p> Una obra claramente cubista en la que Picasso rompe con las formas de representación del espacio tradicionales e introduce figuras que se asemejan a mascaras africanas. </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                                <button type="button" class="btn btn-primary">Comprar</button>
                             </div>
                         </div>
                     </div>
@@ -271,6 +56,9 @@
             </div>
         </div>
     </div>
+    {% endfor %}
+{% endif %}
+</div>
     <div class="conteiner-fluid mt-3 conversor">
         <div class="row justify-content-center">
             <div class="col-6 mt-5 mb-5">

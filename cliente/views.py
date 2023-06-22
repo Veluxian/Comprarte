@@ -51,6 +51,10 @@ def registro(request):
 
 def miguelangel(request):
     context={}
+    if request.user.is_authenticated :
+        context["username"] = request.user.username
+    articulos = Obras.objects.filter(idUsuario=request.user)
+    context["articulos"] = articulos
     return render(request, 'cliente/miguelangel.html', context)
 
 def pablopicasso(request):
@@ -150,4 +154,22 @@ def agregarObra(request):
 
 @login_required
 def editarObra(request, idObras):
-    return redirect(listaObra)
+    try:
+        obra = Obras.objects.get(id_obra=idObras)
+        context ={}
+        if obra:
+            if request.method == "POST":
+                form = ObrasFormulario(request.POST, instance = obra)
+                form.save()
+                context ={'Obras':obra}
+                return render(request, 'cliente/editar_obra.html', context)
+            else:
+                form = ObrasFormulario(instance = obra)
+                context={'obra':obra}
+                return render(request, 'cliente/listaObra.html', context)
+    except:
+        obra = Obras.objects.all()
+        mensaje = "Error"
+        context = {'obra':obra, 'mensaje':mensaje}
+        return render(request, 'cliente/listaObra.html', context)
+    return redirect(editarObra)
