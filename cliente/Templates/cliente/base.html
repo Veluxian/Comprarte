@@ -48,8 +48,11 @@
       </div>
       <!-- nuevo boton de registrarse-->
       {% if user.is_authenticated %}
-        {{user.username}}
-        <a href="{% url 'logout' %}"> cerrar sesion</a> 
+      <div class="col mt-2">
+          {{user.username}}
+          <a class="btn btn-primary" href="{% url 'logout' %}" role="button"> cerrar sesion</a> 
+
+        </div>
       {% else %}     
       <div class="col mt-2">
         <a class="btn btn-primary" href="{% url 'registro' %}" role="button"> 

@@ -1,4 +1,21 @@
 {% extends 'cliente/base.html' %}
 {% load static %}
 {% block contenido %}
+<div class="container-fluid">
+    <h1>Index Arte</h1>
+    <div>
+      <a href="{%url 'agregarObra'%}">Agregar</a>
+    </div>
+    {% if articulos %}
+      <table>
+      {% for articulo in articulos %}
+        <tr>
+          <td>{{articulo.articulo}}</td>
+          <td>{{articulo.estado.estado}}</td>
+          <td><a href="{% url 'editarObra' articulo.idArticulo%}">Editar</a></td>
+        </tr>
+      {% endfor%}
+      </table>
+    {% endif %}
+  </div>
 {% endblock contenido %}
