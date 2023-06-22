@@ -1,0 +1,17 @@
+html{
+    background-color: rgb(84, 156, 219);
+    margin: 0;
+    padding: 0;
+}
+
+.d-block{
+
+    min-height: 210px;
+    max-height: 658px;
+    margin: 2%;
+}
+
+#registro{
+    width: auto;
+    height: auto;
+}
