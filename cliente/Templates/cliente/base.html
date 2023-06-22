@@ -46,7 +46,11 @@
             </div>
         </nav>
       </div>
-      <!-- nuevo boton de registrarse-->      
+      <!-- nuevo boton de registrarse-->
+      {% if user.is_authenticated %}
+        {{user.username}}
+        <a href="{% url 'logout' %}"> cerrar sesion</a> 
+      {% else %}     
       <div class="col mt-2">
         <a class="btn btn-primary" href="{% url 'registro' %}" role="button"> 
           <img src="{% static 'Images/usuario.png' %}" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
@@ -60,6 +64,7 @@
             Ingresa
           </a>
       </div>
+      {% endif %}
     </header>
     {% block contenido %}
     {% endblock contenido %}
