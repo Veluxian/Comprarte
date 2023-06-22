@@ -15,7 +15,7 @@ def main(request):
     return render(request, 'cliente/main.html', context)
 
 def login(request):
-    context={}
+    context={} 
     return render(request, 'cliente/login.html', context)
 
 def login2(request):
