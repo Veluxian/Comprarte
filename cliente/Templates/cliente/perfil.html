@@ -1,0 +1,27 @@
+{% extends 'cliente/base.html' %}
+{% load static %}
+{% block contenido %}
+<div class="col-4 m-5">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Perfil</h5>
+            <form method="POST">
+                {% csrf_token %}
+                <div class="mb-3 mt-5 position-relative">
+                    <label class="form-label">Nombre: </label>
+                    <input type="text" class="form-control" id="validationDefault01" pattern="[A-Za-z]{2,20}" size="20" required="">
+                </div>
+                <div class="mb-3 position-relative">
+                    <label class="form-label">Apellido: </label>
+                    <input type="text" class="form-control" id="validationDefault02" pattern="[A-Za-z]{2,20}" size="20" required="">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Correo electrónico:</label>
+                    <input type="input" name="username" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" size="30">
+                </div>
+                <button type="submit" class="btn btn-primary">Guardar</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock contenido %}
