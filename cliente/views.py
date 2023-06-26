@@ -10,7 +10,7 @@ from .models import Obras,Estado
 
 def main(request):
     context={}
-    if request.user.is_autenticated :
+    if request.user.is_authenticated :
         context["username"] = request.user.username
     return render(request, 'cliente/main.html', context)
 
@@ -20,7 +20,7 @@ def login2(request):
         user = authenticate(username=request.POST.get("username"), password=request.POST.get("password"))
         if user is not None:
             login(request, user)
-            return redirect(main)
+            return redirect(listaObra)
         else:
             return render(request, 'cliente/login2.html', context)
     else:
@@ -32,7 +32,7 @@ def registro(request):
         context={}
         try:
             if request.POST["password1"] == request.POST["password2"]:
-                form = User.objects.create_user(username=request.POST["username"],password=request.POST["password1"],is_active=False)
+                form = User.objects.create_user(username=request.POST["username"],password=request.POST["password1"],is_active=True)
                 form.save()
                 return redirect(perfil)
             else:
@@ -51,14 +51,26 @@ def registro(request):
 
 def miguelangel(request):
     context={}
+    if request.user.is_authenticated :
+        context["username"] = request.user.username
+    articulos = Obras.objects.filter(idUsuario=request.user)
+    context["articulos"] = articulos
     return render(request, 'cliente/miguelangel.html', context)
 
 def pablopicasso(request):
     context={}
+    if request.user.is_authenticated :
+        context["username"] = request.user.username
+    articulos = Obras.objects.filter(idUsuario=request.user)
+    context["articulos"] = articulos
     return render(request, 'cliente/pablopicasso.html', context)
 
 def vicentvangogh(request):
     context={}
+    if request.user.is_authenticated :
+        context["username"] = request.user.username
+    articulos = Obras.objects.filter(idUsuario=request.user)
+    context["articulos"] = articulos
     return render(request, 'cliente/vicentvangogh.html', context)
 
 def artista(request):
@@ -150,4 +162,22 @@ def agregarObra(request):
 
 @login_required
 def editarObra(request, idObras):
-    return redirect(listaObra)
+    try:
+        obra = Obras.objects.get(id_obra=idObras)
+        context ={}
+        if obra:
+            if request.method == "POST":
+                form = ObrasFormulario(request.POST, instance = obra)
+                form.save()
+                context ={'Obras':obra}
+                return render(request, 'cliente/editar_obra.html', context)
+            else:
+                form = ObrasFormulario(instance = obra)
+                context={'obra':obra}
+                return render(request, 'cliente/listaObra.html', context)
+    except:
+        obra = Obras.objects.all()
+        mensaje = "Error"
+        context = {'obra':obra, 'mensaje':mensaje}
+        return render(request, 'cliente/listaObra.html', context)
+    return redirect(editarObra)

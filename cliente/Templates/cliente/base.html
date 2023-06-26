@@ -17,7 +17,6 @@
     <header class="container-fluid mt-5">
       <div class="row bg-body-tertiary">
         <div class="col-7">
-          {% block navbar%}
           <!-- Navbar que utilizaremos-->
           <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container-fluid">
@@ -47,7 +46,14 @@
             </div>
         </nav>
       </div>
-      <!-- nuevo boton de registrarse-->      
+      <!-- nuevo boton de registrarse-->
+      {% if user.is_authenticated %}
+      <div class="col mt-2">
+          {{user.username}}
+          <a class="btn btn-primary" href="{% url 'logout' %}" role="button"> cerrar sesion</a> 
+
+        </div>
+      {% else %}     
       <div class="col mt-2">
         <a class="btn btn-primary" href="{% url 'registro' %}" role="button"> 
           <img src="{% static 'Images/usuario.png' %}" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
@@ -61,16 +67,15 @@
             Ingresa
           </a>
       </div>
+      {% endif %}
     </header>
-    {% endblock navbar%}
-
-    {% block footer%}
+    {% block contenido %}
+    {% endblock contenido %}
       <div class="container-fluid">
         <footer class=class="container-fluid mt-5">
             ComprArte © 2023 Copyright:
         </footer> 
       </div>
-    {% endblock footer%}
 
   </body>
 </html>
