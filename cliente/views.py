@@ -20,7 +20,7 @@ def login2(request):
         user = authenticate(username=request.POST.get("username"), password=request.POST.get("password"))
         if user is not None:
             login(request, user)
-            return redirect(main)
+            return redirect(listaObra)
         else:
             return render(request, 'cliente/login2.html', context)
     else:
@@ -32,7 +32,7 @@ def registro(request):
         context={}
         try:
             if request.POST["password1"] == request.POST["password2"]:
-                form = User.objects.create_user(username=request.POST["username"],password=request.POST["password1"],is_active=False)
+                form = User.objects.create_user(username=request.POST["username"],password=request.POST["password1"],is_active=True)
                 form.save()
                 return redirect(perfil)
             else:
@@ -131,7 +131,7 @@ def listaObra(request):
     context={}
     if request.user.is_authenticated :
         context["username"] = request.user.username
-    articulos = Obras.objects.filter(idUsuario=request.user)
+    articulos = Obras.objects.filter(idUsuario=request.user, estado=2)
     context["articulos"] = articulos
     return render(request, 'cliente/listaObra.html',context)
 
