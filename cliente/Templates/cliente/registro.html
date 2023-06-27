@@ -2,38 +2,12 @@
 {% load static %}
 {% block contenido %}
 <!-- carta registro-->
-<div id="registro" class="container-fluid bg-body-tertiary">
-    <div class="row mt-5">
-        <div class="col-4 m-5">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Regístrate</h5>
-                    <form> 
-                        <div class="mb-3 mt-5 position-relative">
-                            <label for="validationDefault01" class="form-label">Nombre: </label>
-                            <input type="text" class="form-control" id="validationDefault01" size="20">
-                        </div>
-                        <div class="mb-3 position-relative">
-                            <label for="validationDefault02" class="form-label">Apellido: </label>
-                            <input type="text" class="form-control" id="validationDefault02" size="20">
-                        </div>
-                        <div class="mb-3 position-relative">
-                            <label for="validationDefaultUsername" class="form-label">Dirección de correo: </label>
-                            <div class="input-group">
-                                <input type="email" class="form-control" id="validationDefaultUsername" aria-describedby="inputGroupPrepend2" minlength="8" maxlength="30" size="30">
-                            </div>
-                        </div>
-                        <div class="form-label">
-                            <label for="floatingPassword" class="form-label">Contraseña:</label>
-                            <input type="password" class="form-control prueba" id="floatingPassword" minlength="8" maxlength="20" size="20"> 
-                        </div>
-                        <div class="col-12">
-                            <button type="submit" class="btn btn-primary" id="boton">Registrarse</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
+<div class="container">
+    <h1>Registro</h1>
+    <form action="{% url 'registro'%}" method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input class="btn btn-info mt-2 form-control" type="submit" value="Registrar">
+    </form>
 </div>
 {% endblock contenido %}
