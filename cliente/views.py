@@ -53,7 +53,7 @@ def miguelangel(request):
     context={}
     if request.user.is_authenticated :
         context["username"] = request.user.username
-    articulos = Obras.objects.filter(idUsuario=request.user)
+    articulos = Obras.objects.all
     context["articulos"] = articulos
     return render(request, 'cliente/miguelangel.html', context)
 
@@ -131,7 +131,7 @@ def listaObra(request):
     context={}
     if request.user.is_authenticated :
         context["username"] = request.user.username
-    articulos = Obras.objects.filter(idUsuario=request.user, estado=2)
+    articulos = Obras.objects.filter(idUsuario=request.user)
     context["articulos"] = articulos
     return render(request, 'cliente/listaObra.html',context)
 
