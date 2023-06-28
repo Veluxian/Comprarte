@@ -53,7 +53,7 @@ def miguelangel(request):
     context={}
     if request.user.is_authenticated :
         context["username"] = request.user.username
-    articulos = Obras.objects.all
+    articulos = Obras.objects.filter(idUsuario=request.user)
     context["articulos"] = articulos
     return render(request, 'cliente/miguelangel.html', context)
 
