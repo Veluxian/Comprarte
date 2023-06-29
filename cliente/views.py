@@ -53,7 +53,9 @@ def miguelangel(request):
     context={}
     if request.user.is_authenticated :
         context["username"] = request.user.username
-    articulos = Obras.objects.filter(idUsuario=request.user)
+    user = User.objects.get(username='MiguelAngel')
+    user_id = user.id
+    articulos = Obras.objects.filter(idUsuario=user_id, estado=2)
     context["articulos"] = articulos
     return render(request, 'cliente/miguelangel.html', context)
 
@@ -61,7 +63,9 @@ def pablopicasso(request):
     context={}
     if request.user.is_authenticated :
         context["username"] = request.user.username
-    articulos = Obras.objects.filter(idUsuario=request.user)
+    user = User.objects.get(username='PabloPiccaso')
+    user_id = user.id
+    articulos = Obras.objects.filter(idUsuario=user_id)
     context["articulos"] = articulos
     return render(request, 'cliente/pablopicasso.html', context)
 
@@ -69,7 +73,9 @@ def vicentvangogh(request):
     context={}
     if request.user.is_authenticated :
         context["username"] = request.user.username
-    articulos = Obras.objects.filter(idUsuario=request.user)
+    user = User.objects.get(username='VincentVanGogh')
+    user_id = user.id
+    articulos = Obras.objects.filter(idUsuario=user_id)
     context["articulos"] = articulos
     return render(request, 'cliente/vicentvangogh.html', context)
 
@@ -144,9 +150,9 @@ def agregarObra(request):
         estado = Estado.objects.get(idEstado='1')
         form = ObrasFormulario(request.POST,request.FILES)        
         if form.is_valid():
-            Obras_f =  form.save(commit=False) #este me tinca que tiene algo que revisar
-            Obras_f.idUsuario = request.user
-            form.save()
+            Obra =  form.save(commit=False) #este me tinca que tiene algo que revisar
+            Obra.idUsuario = request.user
+            Obra.save()
             
             return redirect(listaObra)
         else:
