@@ -49,10 +49,10 @@
       <!-- nuevo boton de registrarse-->
       {% if user.is_authenticated %}
       <div class="col mt-2">
-          {{user.username}}
+        {{user.username}}
           <a class="btn btn-primary" href="{% url 'logout' %}" role="button"> cerrar sesion</a> 
-
-        </div>
+          <a href="{% url 'listaObra' %}">tus obras</a>
+      </div>
       {% else %}     
       <div class="col mt-2">
         <a class="btn btn-primary" href="{% url 'registro' %}" role="button"> 
