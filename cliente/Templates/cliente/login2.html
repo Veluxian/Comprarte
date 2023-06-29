@@ -8,19 +8,19 @@
       <h5 class="card-title">Ingresa con tu cuenta</h5>
           <form method="POST">
             {% csrf_token %}
-            <div class="mb-3">
-              <label for="exampleInputEmail1" class="form-label">Correo electrónico:</label>
-              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" pattern=".+@gmail\.com" size="30" required="">
+            <div class="form-outline mb-3">
+              <label for="username" class="form-label">Usuario</label>
+              <input type="text" name="username" class="form-control">
             </div>
-            <div class="mb-3">
-              <label for="exampleInputPassword1" class="form-label">Contraseña:</label>
-              <input type="password" class="form-control prueba" id="exampleInputPassword1" size="20" required="">
+            <div class="form-outline mb-3">
+              <label for="password" class="form-label">Contraseña</label>
+              <input type="password" name="password" class="form-control prueba">
             </div>
             <div class="mb-3 form-check">
               <input type="checkbox" class="form-check-input" id="exampleCheck1">
               <label class="form-check-label" for="exampleCheck1">Recuerdame</label>
             </div>
-            <button type="submit" class="btn btn-primary">Ingresa</button>
+            <button type="submit" class="btn btn-primary">Ingresar</button>
           </form>
         </div>
       </div>

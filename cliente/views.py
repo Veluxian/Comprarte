@@ -20,7 +20,7 @@ def login2(request):
         user = authenticate(username=request.POST.get("username"), password=request.POST.get("password"))
         if user is not None:
             login(request, user)
-            return redirect(main)
+            return redirect(listaObra)
         else:
             return render(request, 'cliente/login2.html', context)
     else:
@@ -32,7 +32,7 @@ def registro(request):
         context={}
         try:
             if request.POST["password1"] == request.POST["password2"]:
-                form = User.objects.create_user(username=request.POST["username"],password=request.POST["password1"],is_active=False)
+                form = User.objects.create_user(username=request.POST["username"],password=request.POST["password1"],is_active=True)
                 form.save()
                 return redirect(perfil)
             else:
@@ -42,7 +42,7 @@ def registro(request):
         except:
             formulario = UserCreationForm()
             context["form"] = formulario
-            return render(request, 'cliente/registro.html' ,context)
+            return render(request, 'cliente/registro.html', context)
     else:
         context={}
         formulario = UserCreationForm()
@@ -144,7 +144,7 @@ def agregarObra(request):
         estado = Estado.objects.get(idEstado='1')
         form = ObrasFormulario(request.POST,request.FILES)        
         if form.is_valid():
-            Obras_f =  form.save(commit=False)
+            Obras_f =  form.save(commit=False) #este me tinca que tiene algo que revisar
             Obras_f.idUsuario = request.user
             form.save()
             
@@ -160,7 +160,7 @@ def agregarObra(request):
         return render(request, 'cliente/agregarObra.html', context)
     
 
-@login_required
+@login_required #este tambien hay que revisarlo esta dando error en los artistas
 def editarObra(request, idObras):
     try:
         obra = Obras.objects.get(id_obra=idObras)
