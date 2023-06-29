@@ -34,7 +34,7 @@ def registro(request):
             if request.POST["password1"] == request.POST["password2"]:
                 form = User.objects.create_user(username=request.POST["username"],password=request.POST["password1"],is_active=True)
                 form.save()
-                return redirect(perfil)
+                return redirect(main)
             else:
                 formulario = UserCreationForm()
                 context["form"] = formulario
@@ -53,7 +53,9 @@ def miguelangel(request):
     context={}
     if request.user.is_authenticated :
         context["username"] = request.user.username
-    articulos = Obras.objects.filter(idUsuario=request.user)
+    user = User.objects.get(username='MiguelAngel')
+    user_id = user.id
+    articulos = Obras.objects.filter(idUsuario=user_id, estado=1)
     context["articulos"] = articulos
     return render(request, 'cliente/miguelangel.html', context)
 
@@ -61,7 +63,9 @@ def pablopicasso(request):
     context={}
     if request.user.is_authenticated :
         context["username"] = request.user.username
-    articulos = Obras.objects.filter(idUsuario=request.user)
+    user = User.objects.get(username='PabloPiccaso')
+    user_id = user.id
+    articulos = Obras.objects.filter(idUsuario=user_id, estado=1)
     context["articulos"] = articulos
     return render(request, 'cliente/pablopicasso.html', context)
 
@@ -69,7 +73,9 @@ def vicentvangogh(request):
     context={}
     if request.user.is_authenticated :
         context["username"] = request.user.username
-    articulos = Obras.objects.filter(idUsuario=request.user)
+    user = User.objects.get(username='VincentVanGogh')
+    user_id = user.id
+    articulos = Obras.objects.filter(idUsuario=user_id, estado=1)
     context["articulos"] = articulos
     return render(request, 'cliente/vicentvangogh.html', context)
 
@@ -144,9 +150,9 @@ def agregarObra(request):
         estado = Estado.objects.get(idEstado='1')
         form = ObrasFormulario(request.POST,request.FILES)        
         if form.is_valid():
-            Obras_f =  form.save(commit=False) #este me tinca que tiene algo que revisar
-            Obras_f.idUsuario = request.user
-            form.save()
+            Obra =  form.save(commit=False) #este me tinca que tiene algo que revisar
+            Obra.idUsuario = request.user
+            Obra.save()
             
             return redirect(listaObra)
         else:
@@ -181,3 +187,11 @@ def editarObra(request, idObras):
         context = {'obra':obra, 'mensaje':mensaje}
         return render(request, 'cliente/listaObra.html', context)
     return redirect(editarObra)
+
+def todo(request):
+    context={}
+    if request.user.is_authenticated :
+        context["username"] = request.user.username
+    articulos = Obras.objects.filter(estado=1)
+    context["articulos"] = articulos
+    return render(request, 'cliente/todo.html', context)

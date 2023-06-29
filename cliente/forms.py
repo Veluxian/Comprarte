@@ -19,7 +19,7 @@ class ObrasFormulario(forms.ModelForm):
     class Meta:
         model = Obras
         exclude = ('idUsuario',)
-        fields = ["Obras","descripcion","imagen","estado"]
+        fields = ["Obras","descripcion","imagen","estado", "tipo"]
         widgets = {
             'estado': forms.TextInput(attrs={'type': 'hidden'}),
         }
