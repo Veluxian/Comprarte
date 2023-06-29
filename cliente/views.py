@@ -50,34 +50,93 @@ def registro(request):
         return render(request, 'cliente/registro.html', context)
 
 def miguelangel(request):
-    context={}
-    if request.user.is_authenticated :
-        context["username"] = request.user.username
-    user = User.objects.get(username='MiguelAngel')
-    user_id = user.id
-    articulos = Obras.objects.filter(idUsuario=user_id, estado=1)
-    context["articulos"] = articulos
-    return render(request, 'cliente/miguelangel.html', context)
+    if request.method =='POST':
+        context={}
+        if request.user.is_authenticated :
+            context["username"] = request.user.username
+        filtro =request.POST['filtro']
+        print(filtro)
+        if filtro != 'todo':
+            user = User.objects.get(username='MiguelAngel')
+            user_id = user.id
+            articulos = Obras.objects.filter(idUsuario=user_id, estado=1, tipo=filtro)
+            context["articulos"] = articulos
+            return render(request, 'cliente/miguelangel.html', context)
+        else:
+            user = User.objects.get(username='MiguelAngel')
+            user_id = user.id
+            articulos = Obras.objects.filter(idUsuario=user_id, estado=1)
+            context["articulos"] = articulos
+            return render(request, 'cliente/miguelangel.html', context)
+    else:
+        context={}
+        if request.user.is_authenticated :
+            context["username"] = request.user.username
+        user = User.objects.get(username='MiguelAngel')
+        user_id = user.id
+        articulos = Obras.objects.filter(idUsuario=user_id, estado=1)
+        context["articulos"] = articulos
+        return render(request, 'cliente/miguelangel.html', context)
+
+
 
 def pablopicasso(request):
-    context={}
-    if request.user.is_authenticated :
-        context["username"] = request.user.username
-    user = User.objects.get(username='PabloPiccaso')
-    user_id = user.id
-    articulos = Obras.objects.filter(idUsuario=user_id, estado=1)
-    context["articulos"] = articulos
-    return render(request, 'cliente/pablopicasso.html', context)
+    if request.method =='POST':
+        context={}
+        if request.user.is_authenticated :
+            context["username"] = request.user.username
+        filtro =request.POST['filtro']
+        print(filtro)
+        if filtro != 'todo':
+            user = User.objects.get(username='MiguelAngel')
+            user_id = user.id
+            articulos = Obras.objects.filter(idUsuario=user_id, estado=1, tipo=filtro)
+            context["articulos"] = articulos
+            return render(request, 'cliente/miguelangel.html', context)
+        else:
+            user = User.objects.get(username='MiguelAngel')
+            user_id = user.id
+            articulos = Obras.objects.filter(idUsuario=user_id, estado=1)
+            context["articulos"] = articulos
+            return render(request, 'cliente/miguelangel.html', context)
+    else:
+        context={}
+        if request.user.is_authenticated :
+            context["username"] = request.user.username
+        user = User.objects.get(username='MiguelAngel')
+        user_id = user.id
+        articulos = Obras.objects.filter(idUsuario=user_id, estado=1)
+        context["articulos"] = articulos
+        return render(request, 'cliente/miguelangel.html', context)
 
 def vicentvangogh(request):
-    context={}
-    if request.user.is_authenticated :
-        context["username"] = request.user.username
-    user = User.objects.get(username='VincentVanGogh')
-    user_id = user.id
-    articulos = Obras.objects.filter(idUsuario=user_id, estado=1)
-    context["articulos"] = articulos
-    return render(request, 'cliente/vicentvangogh.html', context)
+    if request.method =='POST':
+        context={}
+        if request.user.is_authenticated :
+            context["username"] = request.user.username
+        filtro =request.POST['filtro']
+        print(filtro)
+        if filtro != 'todo':
+            user = User.objects.get(username='MiguelAngel')
+            user_id = user.id
+            articulos = Obras.objects.filter(idUsuario=user_id, estado=1, tipo=filtro)
+            context["articulos"] = articulos
+            return render(request, 'cliente/miguelangel.html', context)
+        else:
+            user = User.objects.get(username='MiguelAngel')
+            user_id = user.id
+            articulos = Obras.objects.filter(idUsuario=user_id, estado=1)
+            context["articulos"] = articulos
+            return render(request, 'cliente/miguelangel.html', context)
+    else:
+        context={}
+        if request.user.is_authenticated :
+            context["username"] = request.user.username
+        user = User.objects.get(username='MiguelAngel')
+        user_id = user.id
+        articulos = Obras.objects.filter(idUsuario=user_id, estado=1)
+        context["articulos"] = articulos
+        return render(request, 'cliente/miguelangel.html', context)
 
 def artista(request):
     context={}

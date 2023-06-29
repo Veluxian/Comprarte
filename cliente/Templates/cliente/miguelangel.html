@@ -4,16 +4,19 @@
 <div class="conteiner-fluid mt-5 bg-secondary">
     <div class="row justify-content-center">
         <div class="col-3 mt-3 mb-3 ms-3 ">
+          <form method="POST" action="">
+            {% csrf_token %}  
             <select class="form-select" aria-label="Default select tipoarte" name="filtro">
-                <option selected>Selecciona el tipo de arte</option>
-                <option value="Pintura">Pintura</option>
-                <option value="Escultura">Escultura</option>
-                <option value="todo">todo</option>
+              <option value="todo" selected>Selecciona el tipo de arte</option>
+              <option value="pintura">Pintura</option>
+              <option value="escultura">Escultura</option>
+              <option value="todo">todo</option>
             </select>
-        </div>
-        <div class="col-3 mt-3 mb-3 ms-3">
-          <button id="boton" class="btn btn-primary"> Buscar</button>
-        </div>
+          </div>
+          <div class="col-3 mt-3 mb-3 ms-3">
+            <button type="submit" class="btn btn-primary"> Buscar</button>
+          </div>
+        </form>
     </div>
 </div>
 <div class="conteiner-fluid mt-5 bg-white scrollpsy-test">
