@@ -1,3 +1,4 @@
+import os
 from pathlib import Path
 import os
 
@@ -44,6 +45,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [BASE_DIR / "Templates",],
+        'DIRS': [BASE_DIR / "Templates",],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -55,6 +57,8 @@ TEMPLATES = [
         },
     },
 ]
+LOGIN_REDIRECT_URL ="listaObra"
+LOGOUT_REDIRECT_URL = "main"
 LOGIN_REDIRECT_URL ="listaObra"
 LOGOUT_REDIRECT_URL = "main"
 

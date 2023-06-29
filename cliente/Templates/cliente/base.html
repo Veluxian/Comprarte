@@ -32,9 +32,11 @@
                   <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="{% url 'main' %}">Inicio</a>
                   </li>
+                  {% if user.is_authenticated%}
                   <li class="nav-item">
-                    <a class="nav-link active" href="#">Nuestros Artistas</a>
+                    <a class="nav-link active" href="{% url 'perfil' %}" >Perfil</a>
                   </li>
+                  {% endif %}
                   <li class="nav-item">
                     <a class="nav-link active" href="#">Encuentranos</a>
                   </li>
@@ -72,8 +74,8 @@
     {% block contenido %}
     {% endblock contenido %}
       <div class="container-fluid">
-        <footer class=class="container-fluid mt-5">
-            ComprArte © 2023 Copyright:
+        <footer class="container-fluid mt-5">
+          ComprArte © 2023 Copyright
         </footer> 
       </div>
 
