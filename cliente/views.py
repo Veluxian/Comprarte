@@ -55,7 +55,7 @@ def miguelangel(request):
         context["username"] = request.user.username
     user = User.objects.get(username='MiguelAngel')
     user_id = user.id
-    articulos = Obras.objects.filter(idUsuario=user_id, estado=2)
+    articulos = Obras.objects.filter(idUsuario=user_id, estado=1)
     context["articulos"] = articulos
     return render(request, 'cliente/miguelangel.html', context)
 
@@ -65,7 +65,7 @@ def pablopicasso(request):
         context["username"] = request.user.username
     user = User.objects.get(username='PabloPiccaso')
     user_id = user.id
-    articulos = Obras.objects.filter(idUsuario=user_id, estado=2)
+    articulos = Obras.objects.filter(idUsuario=user_id, estado=1)
     context["articulos"] = articulos
     return render(request, 'cliente/pablopicasso.html', context)
 
@@ -75,7 +75,7 @@ def vicentvangogh(request):
         context["username"] = request.user.username
     user = User.objects.get(username='VincentVanGogh')
     user_id = user.id
-    articulos = Obras.objects.filter(idUsuario=user_id, estado=2)
+    articulos = Obras.objects.filter(idUsuario=user_id, estado=1)
     context["articulos"] = articulos
     return render(request, 'cliente/vicentvangogh.html', context)
 
@@ -187,3 +187,11 @@ def editarObra(request, idObras):
         context = {'obra':obra, 'mensaje':mensaje}
         return render(request, 'cliente/listaObra.html', context)
     return redirect(editarObra)
+
+def todo(request):
+    context={}
+    if request.user.is_authenticated :
+        context["username"] = request.user.username
+    articulos = Obras.objects.filter(estado=1)
+    context["articulos"] = articulos
+    return render(request, 'cliente/todo.html', context)

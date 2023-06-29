@@ -1,0 +1,86 @@
+{% extends 'cliente/base.html' %}
+{% load static %}
+{% block contenido %}
+<div class="conteiner-fluid mt-5 bg-secondary">
+    <div class="row justify-content-center">
+        <div class="col-3 mt-3 mb-3 ms-3 ">
+            <select class="form-select" aria-label="Default select tipoarte">
+                <option selected>Selecciona el tipo de arte</option>
+                <option value="1">Cuadro</option>
+                <option value="2">Escultura</option>
+                <option value="3">todo</option>
+            </select>
+        </div>
+        <div class="col-3 mt-3 mb-3 ms-3">
+            <a class="btn btn-primary" href=""> Buscar</a>
+        </div>
+    </div>
+</div>
+<div class="conteiner-fluid mt-5 bg-white scrollpsy-test">
+    <div class="row justify-content-center">
+        <div class="d-flex flex-row align-items-center mt-3 ms-3">
+            <table class="table ms-5 table-condensed">
+                <thead>
+                <tr>
+                    <th> Imagen  </th>
+                    <th> Descripcion </th>
+                    <th> Ver más </th>
+                </tr>
+                </thead>
+                <tbody>
+                    {% if articulos %}
+                    {% for articulo in articulos %}
+                    <tr>
+                        <td><img src="{{articulo.imagen.url}}" height="250px" width="250px"></td>
+                        <td>{{articulo.descripcion}}</td>
+                        <td>
+                            <button type="button" class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#{{articulo.Obras}}">
+                                Ver más
+                            </button>
+                        </td>
+                    </tr>
+                    <div class="modal fade" id="{{articulo.Obras}}" tabindex="-1" aria-labelledby="{{articulo.Obras}}" aria-hidden="true"> 
+                        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h1 class="modal-title fs-5" id="{{articulo.Obras}}"> {{articulo.Obras}}</h1>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                              <div class="container-fluid">
+                                <div class="row justify-content-center">
+                                  <div class="col">
+                                    <img src="{{articulo.imagen.url}}" class="img-fluid">
+                                  </div>
+                                </div>
+                                <div class="row">
+                                  <div class="col">
+                                    {{articulo.descripcion}}
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    {% endif %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="conteiner-fluid mt-3 conversor">
+    <div class="row justify-content-center">
+        <div class="col-6 mt-5 mb-5">
+            <h3 class="convertidor">Cambio de divisa aqui</h3>
+            <input type="text" id="ca" placeholder="Monto a ingresar" required = "">
+            <input type="text" id="de" placeholder="Divisa a preguntar " pattern="[A-Z]{3}" required="">
+            <input type="text" id="ha" placeholder="Divisa Local"  pattern="[A-Z]{3}" required="">
+            <button id="boton" class="btn btn-primary"> Convertir</button>
+            <p id="resultado" class="convertidor"></p>
+        </div>
+    </div>
+</div>
+{% endblock contenido %}
