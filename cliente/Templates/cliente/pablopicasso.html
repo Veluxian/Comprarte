@@ -4,26 +4,19 @@
 <div class="conteiner-fluid mt-5 bg-secondary">
     <div class="row justify-content-center">
         <div class="col-3 mt-3 mb-3 ms-3 ">
-            <select class="form-select" aria-label="Default select tipoarte">
-                <option selected>Selecciona el tipo de arte</option>
-                <option value="1">Cuadro</option>
-                <option value="2">Escultura</option>
-                <option value="3">todo</option>
+          <form method="POST" action="">
+            {% csrf_token %}  
+            <select class="form-select" aria-label="Default select tipoarte" name="filtro">
+              <option value="todo" selected>Selecciona el tipo de arte</option>
+              <option value="pintura">Pintura</option>
+              <option value="escultura">Escultura</option>
+              <option value="todo">todo</option>
             </select>
-{% block contenido %}
-<div class="conteiner-fluid mt-5 bg-secondary">
-    <div class="row justify-content-center">
-        <div class="col-3 mt-3 mb-3 ms-3 ">
-            <select class="form-select" aria-label="Default select tipoarte">
-                <option selected>Selecciona el tipo de arte</option>
-                <option value="1">Cuadro</option>
-                <option value="2">Escultura</option>
-                <option value="3">todo</option>
-            </select>
-        </div>
-        <div class="col-3 mt-3 mb-3 ms-3">
-            <a class="btn btn-primary" href=""> Buscar</a>
-        </div>
+          </div>
+          <div class="col-3 mt-3 mb-3 ms-3">
+            <button type="submit" class="btn btn-primary"> Buscar</button>
+          </div>
+        </form>
     </div>
 </div>
 <div class="conteiner-fluid mt-5 bg-white scrollpsy-test">
@@ -33,6 +26,7 @@
                 <thead>
                 <tr>
                     <th> Imagen  </th>
+                    <th> Tipo </th>
                     <th> Descripcion </th>
                     <th> Ver más </th>
                 </tr>
@@ -42,6 +36,7 @@
                     {% for articulo in articulos %}
                     <tr>
                         <td><img src="{{articulo.imagen.url}}" height="250px" width="250px"></td>
+                        <td>{{articulo.tipo}}</td>
                         <td>{{articulo.descripcion}}</td>
                         <td>
                             <button type="button" class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#{{articulo.Obras}}">
