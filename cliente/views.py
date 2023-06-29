@@ -65,7 +65,7 @@ def pablopicasso(request):
         context["username"] = request.user.username
     user = User.objects.get(username='PabloPiccaso')
     user_id = user.id
-    articulos = Obras.objects.filter(idUsuario=user_id)
+    articulos = Obras.objects.filter(idUsuario=user_id, estado=2)
     context["articulos"] = articulos
     return render(request, 'cliente/pablopicasso.html', context)
 
@@ -75,7 +75,7 @@ def vicentvangogh(request):
         context["username"] = request.user.username
     user = User.objects.get(username='VincentVanGogh')
     user_id = user.id
-    articulos = Obras.objects.filter(idUsuario=user_id)
+    articulos = Obras.objects.filter(idUsuario=user_id, estado=2)
     context["articulos"] = articulos
     return render(request, 'cliente/vicentvangogh.html', context)
 
