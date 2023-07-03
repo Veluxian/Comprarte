@@ -78,8 +78,6 @@ def miguelangel(request):
         context["articulos"] = articulos
         return render(request, 'cliente/miguelangel.html', context)
 
-
-
 def pablopicasso(request):
     if request.method =='POST':
         context={}
@@ -146,6 +144,28 @@ def obras(request):
     context={}
     return render(request, 'cliente/obras.html', context)
 
+def todo(request):
+    if request.method =='POST':
+        context={}
+        if request.user.is_authenticated :
+            context["username"] = request.user.username
+        filtro =request.POST['filtro']
+        print(filtro)
+        if filtro != 'todo':
+            articulos = Obras.objects.filter(estado=2, tipo=filtro)
+            context["articulos"] = articulos
+            return render(request, 'cliente/todo.html', context)
+        else:
+            articulos = Obras.objects.filter(estado=2)
+            context["articulos"] = articulos
+            return render(request, 'cliente/todo.html', context)
+    else:
+        context={}
+        if request.user.is_authenticated :
+            context["username"] = request.user.username
+        articulos = Obras.objects.filter(estado=2)
+        context["articulos"] = articulos
+        return render(request, 'cliente/todo.html', context)
 @login_required
 def cerrar_sesion(request):
     logout(request)
@@ -157,9 +177,6 @@ def cambio_pass(request):
     if request.user.is_autenticated :
         context["username"] = request.user.username
     return render(request, 'cliente/cambio_pass.html', context)
-
-def recuperar_pass(request):
-    return redirect(main)
 
 @login_required
 def perfil(request):
@@ -224,7 +241,6 @@ def agregarObra(request):
         context["formulario"] = Obras
         return render(request, 'cliente/agregarObra.html', context)
     
-
 @login_required #este tambien hay que revisarlo esta dando error en los artistas
 def editarObra(request, idObras):
     try:
@@ -247,25 +263,3 @@ def editarObra(request, idObras):
         return render(request, 'cliente/listaObra.html', context)
     return redirect(editarObra)
 
-def todo(request):
-    if request.method =='POST':
-        context={}
-        if request.user.is_authenticated :
-            context["username"] = request.user.username
-        filtro =request.POST['filtro']
-        print(filtro)
-        if filtro != 'todo':
-            articulos = Obras.objects.filter(estado=2, tipo=filtro)
-            context["articulos"] = articulos
-            return render(request, 'cliente/todo.html', context)
-        else:
-            articulos = Obras.objects.filter(estado=2)
-            context["articulos"] = articulos
-            return render(request, 'cliente/todo.html', context)
-    else:
-        context={}
-        if request.user.is_authenticated :
-            context["username"] = request.user.username
-        articulos = Obras.objects.filter(estado=2)
-        context["articulos"] = articulos
-        return render(request, 'cliente/todo.html', context)
