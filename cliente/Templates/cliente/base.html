@@ -34,17 +34,27 @@
                   <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="{% url 'main' %}">Inicio</a>
                   </li>
-                  {% if user.is_authenticated%}
-                  <li class="nav-item">
-                    <a class="nav-link active" href="{% url 'perfil' %}" >Perfil</a>
-                  </li>
+                  {% if user.is_authenticated %}
+                  {% if user.is_superuser %}
+                    <li class="nav-item">
+                      <a class="nav-link active" href="{% url 'admin' %}" >Por Aprobar</a>
+                    </li>
+                  {% else %}
+                    <li class="nav-item">
+                      <a class="nav-link active" href="{% url 'perfil' %}" >Perfil</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link active" href="{% url 'listaObra' %}">Tus obras</a>
+                    </li>
                   {% endif %}
+                  {% else %}
                   <li class="nav-item">
                     <a class="nav-link active" href="{% url 'todo' %}">Todo el arte</a>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link active" href="#">Contactanos</a>
                   </li>
+                  {% endif %}
                 </ul>
               </div>
             </div>
@@ -53,7 +63,6 @@
             {{user.username}}
             <div class="col-1 mt-2 ms-1">
                 <a class="btn btn-primary" href="{% url 'logout' %}" role="button"> cerrar sesion</a> 
-                <a href="{% url 'listaObra' %}">tus obras</a>
             </div>
             {% else %}     
             <div class="col-2 mt-2 ms-1">
@@ -70,7 +79,8 @@
                 </a>
             </div>
             {% endif %}
-        </nav>
+          </nav>
+        </div>
       </div>
     </header>
 

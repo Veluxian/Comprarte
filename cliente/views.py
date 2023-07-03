@@ -3,10 +3,12 @@ from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.forms import UserCreationForm,UserChangeForm
 from django.contrib.auth.models import User
 from .forms import clienteFormulario,ObrasFormulario
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, user_passes_test
 from .models import Obras,Estado
 
 # Create your views here.
+def superusuario(user):
+    return user.is_superuser
 
 def main(request):
     context={}
@@ -166,6 +168,7 @@ def todo(request):
         articulos = Obras.objects.filter(estado=2)
         context["articulos"] = articulos
         return render(request, 'cliente/todo.html', context)
+
 @login_required
 def cerrar_sesion(request):
     logout(request)
@@ -263,3 +266,8 @@ def editarObra(request, idObras):
         return render(request, 'cliente/listaObra.html', context)
     return redirect(editarObra)
 
+
+@user_passes_test(superusuario)
+def admin(request):
+    context = {}
+    return render(request, 'cliente/admin.html', context)

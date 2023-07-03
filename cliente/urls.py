@@ -20,4 +20,6 @@ urlpatterns = [
     path('listaObra', views.listaObra , name='listaObra'),
     path('editarObra', views.editarObra , name='editarObra'),
     path('todo', views.todo, name='todo'),
+
+    path('admin', views.admin , name='admin'),
 ]

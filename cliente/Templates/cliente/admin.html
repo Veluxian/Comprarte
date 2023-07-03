@@ -1,0 +1,40 @@
+
+{% extends 'cliente/base.html' %}
+{% load static %}
+{% block contenido %}
+<div class="container-fluid mt-5 bg-white">
+    <div class="row justify-content-center">
+      <div class="col-3 mt-5 mb-5">
+        <h1>Lista de Obras por Aprobar</h1>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid bg-white scrollpsy-test">
+    <div class="row justify-content-center">
+      <div class="d-flex flex-row align-items-center mt-3 ms-3 ">  
+        <table class="table ms-5 table-condensed">
+          <thead>
+            <tr>
+              <th> Imagen </th>
+              <th> Nombre </th>
+              <th> descripcion </th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            {% if articulos %}
+            {% for articulo in articulos %}
+            <tr>
+              <td> <img src="{{articulo.imagen.url}}" height="250px" width="250px"> </td>
+              <td> {{articulo.Obras}} </td>
+              <td> {{articulo.descripcion}}</td>
+              <td> <a href="">Editar</a> </td>
+            </tr>
+            {% endfor%}
+            {% endif %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+</div>
+{% endblock contenido %}
