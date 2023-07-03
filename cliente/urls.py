@@ -16,6 +16,7 @@ urlpatterns = [
     path('recuperar_pass', views.recuperar_pass , name='recuperar_pass'),
     path('perfil', views.perfil , name='perfil'),
     path('todo', views.todo, name='todo'),
+    path('contacto', views.contacto, name='contacto'),
     
     path('agregarObra', views.agregarObra , name='agregarObra'),
     path('listaObra', views.listaObra , name='listaObra'),

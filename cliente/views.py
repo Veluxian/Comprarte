@@ -269,3 +269,7 @@ def todo(request):
         articulos = Obras.objects.filter(estado=2)
         context["articulos"] = articulos
         return render(request, 'cliente/todo.html', context)
+    
+def contacto(request):
+    context={}
+    return render(request, 'cliente/contacto.html', context)

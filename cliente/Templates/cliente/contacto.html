@@ -1,0 +1,36 @@
+{% extends 'cliente/base.html' %}
+{% load static %}
+{% block contenido %}
+<main class="container">
+    <div class="col-4 m-5">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Formulario de contacto</h5>
+                <form method="POST">
+                    {% csrf_token %}
+
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" name="nombre" required>
+
+                    <label for="apellidos">Apellidos: </label>
+                    <input type="text" required>
+
+                    <label for="celular" class="form-label">Celular:</label>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">+569</span>
+                        <div class="form-floating">
+                          <input type="text" class="form-control"  placeholder="Número" name="celular" required>
+                          <label for="floatingInputGroup1">Número</label>
+                        </div>
+                    </div>
+
+                    <label for="email">Correo electrónico:</label>
+                    <input type="email" required>
+
+                    <button type="submit" class="btn btn-primary">Enviar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock contenido %}
