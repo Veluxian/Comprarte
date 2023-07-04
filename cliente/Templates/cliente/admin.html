@@ -15,20 +15,17 @@
         <table class="table ms-5 table-condensed">
           <thead>
             <tr>
-              <th> Imagen </th>
               <th> Nombre </th>
-              <th> descripcion </th>
-              <th></th>
+              <th> email </th>
             </tr>
           </thead>
           <tbody>
-            {% if articulos %}
-            {% for articulo in articulos %}
+            {% if lista %}
+            {% for usuarios in lista %}
             <tr>
-              <td> <img src="{{articulo.imagen.url}}" height="250px" width="250px"> </td>
-              <td> {{articulo.Obras}} </td>
-              <td> {{articulo.descripcion}}</td>
-              <td> <a href="">Editar</a> </td>
+              <td> {{usuarios.username}} </td>
+              <td> {{articulo.firstname}}</td>
+              <td><input type="text" name="clase"></td>
             </tr>
             {% endfor%}
             {% endif %}
