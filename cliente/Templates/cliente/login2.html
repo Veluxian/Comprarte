@@ -9,12 +9,12 @@
           <form method="POST">
             {% csrf_token %}
             <div class="form-outline mb-3">
-              <label for="username" class="form-label">Usuario</label>
-              <input type="text" name="username" class="form-control">
+              <label for="username" class="form-label">Usuario:</label>
+              <input type="text" name="username" minlength="2" size="20" class="form-control">
             </div>
             <div class="form-outline mb-3">
-              <label for="password" class="form-label">Contraseña</label>
-              <input type="password" name="password" class="form-control prueba">
+              <label for="password" class="form-label">Contraseña:</label>
+              <input type="password" name="password" minlength="8" size="20" class="form-control prueba">
             </div>
             <div class="mb-3 form-check">
               <input type="checkbox" class="form-check-input" id="exampleCheck1">
