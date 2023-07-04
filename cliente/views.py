@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.forms import UserCreationForm,UserChangeForm
 from django.contrib.auth.models import User
-from .forms import clienteFormulario,ObrasFormulario
+from .forms import clienteFormulario,ObrasFormulario, actualizar
 from django.contrib.auth.decorators import login_required, user_passes_test
 from .models import Obras,Estado
 
@@ -88,13 +88,13 @@ def pablopicasso(request):
         filtro =request.POST['filtro']
         print(filtro)
         if filtro != 'todo':
-            user = User.objects.get(username='PabloPiccaso')
+            user = User.objects.get(username='PabloPicasso')
             user_id = user.id
             articulos = Obras.objects.filter(idUsuario=user_id, estado=2, tipo=filtro)
             context["articulos"] = articulos
             return render(request, 'cliente/pablopicasso.html', context)
         else:
-            user = User.objects.get(username='PabloPiccaso')
+            user = User.objects.get(username='PabloPicasso')
             user_id = user.id
             articulos = Obras.objects.filter(idUsuario=user_id, estado=2)
             context["articulos"] = articulos
@@ -103,7 +103,7 @@ def pablopicasso(request):
         context={}
         if request.user.is_authenticated :
             context["username"] = request.user.username
-        user = User.objects.get(username='PabloPiccaso')
+        user = User.objects.get(username='PabloPicasso')
         user_id = user.id
         articulos = Obras.objects.filter(idUsuario=user_id, estado=2)
         context["articulos"] = articulos
@@ -268,6 +268,25 @@ def editarObra(request, idObras):
 
 
 @user_passes_test(superusuario)
+def actualizar_obra(request):
+    context={}
+    if request.user.is_authenticated :
+        context["username"] = request.user.username
+    if request.method == "POST":
+        form = actualizar(request.POST,request.FILES)        
+        if form.is_valid():
+            Obra =  form.save(commit=False) 
+            Obra.idUsuario = request.user
+            Obra.save()
+            return redirect(admin)
+    return render(request, 'cliente/admin.html',context)
+
+@user_passes_test(superusuario)
 def admin(request):
-    context = {}
+    context={}
+    if request.user.is_authenticated :
+        context["username"] = request.user.username
+    articulos = Obras.objects.filter(estado=1)
+    estado_obra = Estado.objects.all()
+    context = {'articulos':articulos, 'estado_obra':estado_obra}
     return render(request, 'cliente/admin.html', context)

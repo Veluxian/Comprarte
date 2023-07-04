@@ -4,8 +4,13 @@ User=get_user_model()
 
 # Create your models here.
 class Estado(models.Model):
+    ESTADO_OBRA_CHOICES =(
+        ('Aprobado', 'Aprobado'),
+        ('Pendiente', 'Pendiente'),
+        ('Rechazado', 'Rechazadp')
+    )
     idEstado = models.AutoField(primary_key=True)
-    estado = models.CharField(max_length=255)
+    estado = models.CharField(max_length=255, choices=ESTADO_OBRA_CHOICES,default=1)
     
     def __str__(self):
         return str(self.estado)

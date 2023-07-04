@@ -19,6 +19,7 @@ urlpatterns = [
     path('agregarObra', views.agregarObra , name='agregarObra'),
     path('listaObra', views.listaObra , name='listaObra'),
     path('editarObra', views.editarObra , name='editarObra'),
+    path('actualizar_obra', views.actualizar_obra, name='actualizar_obra'),
     path('todo', views.todo, name='todo'),
 
     path('admin', views.admin , name='admin'),

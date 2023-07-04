@@ -15,18 +15,63 @@
         <table class="table ms-5 table-condensed">
           <thead>
             <tr>
-              <th> Nombre </th>
-              <th> email </th>
+              <th> Arte </th>
+              <th> tipo </th>
+              <th> Descripcion </th>
+              <th> Estado </th>
+              <th> Revision </th>
             </tr>
           </thead>
           <tbody>
-            {% if lista %}
-            {% for usuarios in lista %}
+            {% if articulos %}
+            {% for articulo in articulos %}
             <tr>
-              <td> {{usuarios.username}} </td>
-              <td> {{articulo.firstname}}</td>
-              <td><input type="text" name="clase"></td>
+              <td> <img src="{{articulo.imagen.url}}" height="250px" width="250px"> </td>
+              <td> {{articulo.tipo}}</td>
+              <td> {{articulo.descripcion}} </td>
+              <td> {{articulo.estado}} </td>
+              <td>  
+                <button type="button" class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#{{articulo.imagen}}">
+                  Ver más
+                </button>
+              </td>
             </tr>
+            <div class="modal fade" id="{{articulo.imagen}}" tabindex="-1" aria-labelledby="{{articulo.imagen}}" aria-hidden="true"> 
+              <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="{{articulo.imagen}}"> {{articulo.Obras}}</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <div class="container-fluid">
+                      <div class="row justify-content-center">
+                        <div class="col">
+                          <img src="{{articulo.imagen.url}}" class="img-fluid">
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col">
+                          <form method="POST" action="{% url 'actualizar_obra' %}">
+                            {% csrf_token %}
+                            <input type="hidden" name="idobra" value="{{articulo.idObras}}">  
+                            <label for="Estado"></label>
+                            <select class="form-select" aria-label="Default select tipoarte" name="estado">
+                              {% if estado_obra %}
+                              {% for estado in estado_obra %}
+                                <option value="{{estado.estado}}">{{estado.estado}}</option>
+                              {% endfor %}
+                              {% endif %}
+                            </select>
+                            <button type="submit">Actualizar</button>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
             {% endfor%}
             {% endif %}
           </tbody>
