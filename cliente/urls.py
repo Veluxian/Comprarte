@@ -17,6 +17,7 @@ urlpatterns = [
     path('perfil', views.perfil , name='perfil'),
     path('todo', views.todo, name='todo'),
     path('contacto', views.contacto, name='contacto'),
+    path('listaContacto', views.listaContacto, name='listaContacto'),
     
     path('agregarObra', views.agregarObra , name='agregarObra'),
     path('listaObra', views.listaObra , name='listaObra'),

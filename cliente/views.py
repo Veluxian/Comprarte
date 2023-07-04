@@ -273,3 +273,7 @@ def todo(request):
 def contacto(request):
     context={}
     return render(request, 'cliente/contacto.html', context)
+
+def listaContacto(request):
+    context={}
+    return render(request, 'cliente/listaContacto.html', context)

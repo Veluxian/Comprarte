@@ -36,11 +36,10 @@
                   {% if user.is_authenticated%}
                     {% if user.is_superuser%}
                     <li class="nav-item">
-                        <a class="nav-link active" href="{% url 'posts' %}">Solicitudes de Aprobacion</a>
+                        <a class="nav-link active" href="{% url 'posts' %}">Solicitudes de Aprobacion</a> <!-- Este es tu por aprobar -->
                     </li>
-                    {% else %}
                     <li class="nav-item">
-                        <a class="nav-link active" href="{% url 'pending_posts' %}">Pendientes de Aprobacion</a>
+                      <a class="nav-link active" href="{% url 'listaContacto' %}">Solicitudes de Contacto</a> <!-- Este es el contacto -->
                     </li>
                     {% endif %}
                     <li class="nav-item">
