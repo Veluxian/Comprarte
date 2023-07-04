@@ -2,6 +2,7 @@
 {% load static %}
 {% block contenido %}
 <!-- carta login-->
+<script src="{% static 'JS/test.js' %}"></script>
 <div class="col-4 m-5">
   <div class="card">
     <div class="card-body">
@@ -14,7 +15,8 @@
             </div>
             <div class="form-outline mb-3">
               <label for="password" class="form-label">Contraseña:</label>
-              <input type="password" name="password" minlength="8" size="20" class="form-control prueba">
+              <input type="password" class="form-control password" name="password" minlength="8" size="20">
+              <div id="pass">¡No se aceptan caracteres con tilde ni la letra ñ!</div>
             </div>
             <div class="mb-3 form-check">
               <input type="checkbox" class="form-check-input" id="exampleCheck1">
