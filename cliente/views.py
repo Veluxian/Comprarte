@@ -273,12 +273,12 @@ def actualizar_obra(request):
     if request.user.is_authenticated :
         context["username"] = request.user.username
     if request.method == "POST":
-        form = actualizar(request.POST,request.FILES)        
-        if form.is_valid():
-            Obra =  form.save(commit=False) 
-            Obra.idUsuario = request.user
-            Obra.save()
-            return redirect(admin)
+        idobra = request.POST['idobra']
+        dato= request.POST['estado']
+        obra= Obras.objects.get(idObras=idobra)
+        estado= Estado.objects.get(estado=dato)
+        obra.estado = estado
+        obra.save()
     return render(request, 'cliente/admin.html',context)
 
 @user_passes_test(superusuario)
