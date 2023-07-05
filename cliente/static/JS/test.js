@@ -16,15 +16,15 @@
   })()
 
   $(document).ready(function(){
-    $(".prueba").blur(function(){
-      $("#prue").hide();
+    $(".password").blur(function(){
+      $("#pass").hide();
     });
 
-    $(".prueba").focus(function(){
-      $("#prue").show();
+    $(".password").focus(function(){
+      $("#pass").show();
     });
     
-    $("#envio").click(function(){
+    $("#ingreso").click(function(){
       alert("Se estan enviando los datos. ");
     });
   });

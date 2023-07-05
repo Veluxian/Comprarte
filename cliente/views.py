@@ -78,8 +78,6 @@ def miguelangel(request):
         context["articulos"] = articulos
         return render(request, 'cliente/miguelangel.html', context)
 
-
-
 def pablopicasso(request):
     if request.method =='POST':
         context={}

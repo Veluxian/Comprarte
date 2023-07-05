@@ -2,7 +2,9 @@
 {% load static %}
 {% block contenido %}
 <!-- carta login-->
-<script src="{% static 'JS/test.js' %}"></script>
+{% block funcion %}
+  <script src="{% static 'JS/test.js' %}"></script>
+{% endblock funcion %}
 <div class="col-4 m-5">
   <div class="card">
     <div class="card-body">
@@ -22,7 +24,7 @@
               <input type="checkbox" class="form-check-input" id="exampleCheck1">
               <label class="form-check-label" for="exampleCheck1">Recuerdame</label>
             </div>
-            <button type="submit" class="btn btn-primary">Ingresar</button>
+            <button type="submit" class="btn btn-primary" id="ingreso">Ingresar</button>
           </form>
         </div>
       </div>
