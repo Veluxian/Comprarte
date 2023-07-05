@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.forms import UserCreationForm,UserChangeForm
 from django.contrib.auth.models import User
@@ -245,31 +245,28 @@ def agregarObra(request):
         return render(request, 'cliente/agregarObra.html', context)
     
 @login_required #este tambien hay que revisarlo esta dando error en los artistas
-def editarObra(request, idObras):
-    try:
-        obra = Obras.objects.get(id_obra=idObras)
-        context ={}
-        if obra:
-            if request.method == "POST":
-                form = ObrasFormulario(request.POST, instance = obra)
-                form.save()
-                context ={'Obras':obra}
-                return render(request, 'cliente/editar_obra.html', context)
-            else:
-                form = ObrasFormulario(instance = obra)
-                context={'obra':obra}
-                return render(request, 'cliente/listaObra.html', context)
-    except:
-        obra = Obras.objects.all()
-        mensaje = "Error"
-        context = {'obra':obra, 'mensaje':mensaje}
-        return render(request, 'cliente/listaObra.html', context)
-    return redirect(editarObra)
-
+def editarObra(request, idObra):
+    context = {}
+    obra = get_object_or_404(Obras,pk=idObra)
+    if request.method == 'POST':
+        arte = ObrasFormulario(request.POST, instance=obra)
+        if arte.is_valid():
+            estado_default = Estado.objects.all()[1] 
+            arte.instance.mensaje = Obras._meta.get_field('mensaje').get_default()
+            arte.instance.estado = estado_default
+            arte.save()
+            return redirect(listaObra)
+    else:
+        arte = ObrasFormulario(instance=obra)
+    
+    context["formulario"] = arte
+    return render(request, 'cliente/editar_obra.html', context)
 
 @user_passes_test(superusuario)
 def actualizar_obra(request):
     context={}
+    if request.user.is_authenticated :
+        context["username"] = request.user.username
     return render(request, 'cliente/admin.html',context)
 
 @user_passes_test(superusuario)
@@ -280,9 +277,11 @@ def admin(request):
     if request.method == "POST":
         idobra = request.POST['idobra']
         dato = request.POST['estado']
+        mensaje = request.POST['mensaje']
         obra = Obras.objects.get(idObras=idobra)
         estado = Estado.objects.get(estado=dato)
         obra.estado = estado
+        obra.mensaje = mensaje
         obra.save()
         redirect(admin)
     articulos = Obras.objects.filter(estado=2)
