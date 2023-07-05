@@ -20,8 +20,8 @@
             <tr>
               <th> Imagen </th>
               <th> Nombre </th>
-              <th> descripcion </th>
-              <th></th>
+              <th> Esrado </th>
+              <th> Mensaje </th>
             </tr>
           </thead>
           <tbody>
@@ -30,8 +30,8 @@
             <tr>
               <td> <img src="{{articulo.imagen.url}}" height="250px" width="250px"> </td>
               <td> {{articulo.Obras}} </td>
-              <td> {{articulo.descripcion}}</td>
-              <td> <a href="">Editar</a> </td>
+              <td> {{articulo.estado}}</td>
+              <td>  </td>
             </tr>
             {% endfor%}
             {% endif %}

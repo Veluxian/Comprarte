@@ -274,9 +274,9 @@ def actualizar_obra(request):
         context["username"] = request.user.username
     if request.method == "POST":
         idobra = request.POST['idobra']
-        dato= request.POST['estado']
-        obra= Obras.objects.get(idObras=idobra)
-        estado= Estado.objects.get(estado=dato)
+        dato = request.POST['estado']
+        obra = Obras.objects.get(idObras=idobra)
+        estado = Estado.objects.get(estado=dato)
         obra.estado = estado
         obra.save()
     return render(request, 'cliente/admin.html',context)

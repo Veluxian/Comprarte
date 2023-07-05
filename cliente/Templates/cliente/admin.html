@@ -55,7 +55,6 @@
                           <form method="POST" action="{% url 'actualizar_obra' %}">
                             {% csrf_token %}
                             <input type="hidden" name="idobra" value="{{articulo.idObras}}">  
-                            <label for="Estado"></label>
                             <select class="form-select" aria-label="Default select tipoarte" name="estado">
                               {% if estado_obra %}
                               {% for estado in estado_obra %}
