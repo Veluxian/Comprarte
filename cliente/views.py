@@ -22,7 +22,7 @@ def login2(request):
         user = authenticate(username=request.POST.get("username"), password=request.POST.get("password"))
         if user is not None:
             login(request, user)
-            return redirect(listaObra)
+            return redirect(main)
         else:
             return render(request, 'cliente/login2.html', context)
     else:
@@ -61,13 +61,13 @@ def miguelangel(request):
         if filtro != 'todo':
             user = User.objects.get(username='MiguelAngel')
             user_id = user.id
-            articulos = Obras.objects.filter(idUsuario=user_id, estado=2, tipo=filtro)
+            articulos = Obras.objects.filter(idUsuario=user_id, estado=1, tipo=filtro)
             context["articulos"] = articulos
             return render(request, 'cliente/miguelangel.html', context)
         else:
             user = User.objects.get(username='MiguelAngel')
             user_id = user.id
-            articulos = Obras.objects.filter(idUsuario=user_id, estado=2)
+            articulos = Obras.objects.filter(idUsuario=user_id, estado=1)
             context["articulos"] = articulos
             return render(request, 'cliente/miguelangel.html', context)
     else:
@@ -76,7 +76,7 @@ def miguelangel(request):
             context["username"] = request.user.username
         user = User.objects.get(username='MiguelAngel')
         user_id = user.id
-        articulos = Obras.objects.filter(idUsuario=user_id, estado=2)
+        articulos = Obras.objects.filter(idUsuario=user_id, estado=1)
         context["articulos"] = articulos
         return render(request, 'cliente/miguelangel.html', context)
 
@@ -90,13 +90,13 @@ def pablopicasso(request):
         if filtro != 'todo':
             user = User.objects.get(username='PabloPicasso')
             user_id = user.id
-            articulos = Obras.objects.filter(idUsuario=user_id, estado=2, tipo=filtro)
+            articulos = Obras.objects.filter(idUsuario=user_id, estado=1, tipo=filtro)
             context["articulos"] = articulos
             return render(request, 'cliente/pablopicasso.html', context)
         else:
             user = User.objects.get(username='PabloPicasso')
             user_id = user.id
-            articulos = Obras.objects.filter(idUsuario=user_id, estado=2)
+            articulos = Obras.objects.filter(idUsuario=user_id, estado=1)
             context["articulos"] = articulos
             return render(request, 'cliente/pablopicasso.html', context)
     else:
@@ -105,7 +105,7 @@ def pablopicasso(request):
             context["username"] = request.user.username
         user = User.objects.get(username='PabloPicasso')
         user_id = user.id
-        articulos = Obras.objects.filter(idUsuario=user_id, estado=2)
+        articulos = Obras.objects.filter(idUsuario=user_id, estado=1)
         context["articulos"] = articulos
         return render(request, 'cliente/pablopicasso.html', context)
 
@@ -119,13 +119,13 @@ def vicentvangogh(request):
         if filtro != 'todo':
             user = User.objects.get(username='VincentVanGogh')
             user_id = user.id
-            articulos = Obras.objects.filter(idUsuario=user_id, estado=2, tipo=filtro)
+            articulos = Obras.objects.filter(idUsuario=user_id, estado=1, tipo=filtro)
             context["articulos"] = articulos
             return render(request, 'cliente/vicentvangogh.html', context)
         else:
             user = User.objects.get(username='VincentVanGogh')
             user_id = user.id
-            articulos = Obras.objects.filter(idUsuario=user_id, estado=2)
+            articulos = Obras.objects.filter(idUsuario=user_id, estado=1)
             context["articulos"] = articulos
             return render(request, 'cliente/vicentvangogh.html', context)
     else:
@@ -134,7 +134,7 @@ def vicentvangogh(request):
             context["username"] = request.user.username
         user = User.objects.get(username='VincentVanGogh')
         user_id = user.id
-        articulos = Obras.objects.filter(idUsuario=user_id, estado=2)
+        articulos = Obras.objects.filter(idUsuario=user_id, estado=1)
         context["articulos"] = articulos
         return render(request, 'cliente/vicentvangogh.html', context)
 
@@ -154,18 +154,18 @@ def todo(request):
         filtro =request.POST['filtro']
         print(filtro)
         if filtro != 'todo':
-            articulos = Obras.objects.filter(estado=2, tipo=filtro)
+            articulos = Obras.objects.filter(estado=1, tipo=filtro)
             context["articulos"] = articulos
             return render(request, 'cliente/todo.html', context)
         else:
-            articulos = Obras.objects.filter(estado=2)
+            articulos = Obras.objects.filter(estado=1)
             context["articulos"] = articulos
             return render(request, 'cliente/todo.html', context)
     else:
         context={}
         if request.user.is_authenticated :
             context["username"] = request.user.username
-        articulos = Obras.objects.filter(estado=2)
+        articulos = Obras.objects.filter(estado=1)
         context["articulos"] = articulos
         return render(request, 'cliente/todo.html', context)
 
@@ -226,7 +226,7 @@ def agregarObra(request):
     if request.user.is_authenticated :
         context["username"] = request.user.username
     if request.method == "POST":
-        estado = Estado.objects.get(idEstado='1')
+        estado = Estado.objects.get(idEstado='2')
         form = ObrasFormulario(request.POST,request.FILES)        
         if form.is_valid():
             Obra =  form.save(commit=False) 
@@ -270,6 +270,11 @@ def editarObra(request, idObras):
 @user_passes_test(superusuario)
 def actualizar_obra(request):
     context={}
+    return render(request, 'cliente/admin.html',context)
+
+@user_passes_test(superusuario)
+def admin(request):
+    context={}
     if request.user.is_authenticated :
         context["username"] = request.user.username
     if request.method == "POST":
@@ -279,14 +284,8 @@ def actualizar_obra(request):
         estado = Estado.objects.get(estado=dato)
         obra.estado = estado
         obra.save()
-    return render(request, 'cliente/admin.html',context)
-
-@user_passes_test(superusuario)
-def admin(request):
-    context={}
-    if request.user.is_authenticated :
-        context["username"] = request.user.username
-    articulos = Obras.objects.filter(estado=1)
+        redirect(admin)
+    articulos = Obras.objects.filter(estado=2)
     estado_obra = Estado.objects.all()
     context = {'articulos':articulos, 'estado_obra':estado_obra}
     return render(request, 'cliente/admin.html', context)

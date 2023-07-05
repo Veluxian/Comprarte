@@ -52,7 +52,7 @@
                       </div>
                       <div class="row">
                         <div class="col">
-                          <form method="POST" action="{% url 'actualizar_obra' %}">
+                          <form method="POST" action="{% url 'admin' %}">
                             {% csrf_token %}
                             <input type="hidden" name="idobra" value="{{articulo.idObras}}">  
                             <select class="form-select" aria-label="Default select tipoarte" name="estado">
