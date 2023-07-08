@@ -4,8 +4,13 @@ User=get_user_model()
 
 # Create your models here.
 class Estado(models.Model):
+    ESTADO_OBRA_CHOICES =(
+        ('Aprobado', 'Aprobado'),
+        ('Pendiente', 'Pendiente'),
+        ('Rechazado', 'Rechazadp')
+    )
     idEstado = models.AutoField(primary_key=True)
-    estado = models.CharField(max_length=255)
+    estado = models.CharField(max_length=255, choices=ESTADO_OBRA_CHOICES,default=1)
     
     def __str__(self):
         return str(self.estado)
@@ -20,8 +25,9 @@ class Obras(models.Model):
     descripcion = models.TextField(default="")
     imagen = models.ImageField(upload_to='Img/')
     idUsuario = models.ForeignKey(User,on_delete=models.CASCADE)
-    estado = models.ForeignKey('Estado', on_delete=models.CASCADE,default=1)
+    estado = models.ForeignKey('Estado', on_delete=models.CASCADE,default=2)
     tipo = models.CharField(max_length=10, choices=TIPO_OBRA_CHOICES, default=1)
+    mensaje =models.TextField(default="")
 
     def __str__(self):
         return str(self.Obras)
