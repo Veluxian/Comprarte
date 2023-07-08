@@ -226,7 +226,7 @@ def agregarObra(request):
     if request.user.is_authenticated :
         context["username"] = request.user.username
     if request.method == "POST":
-        estado = Estado.objects.get(idEstado='2')
+        estado = Estado.objects.get(idEstado='1')
         form = ObrasFormulario(request.POST,request.FILES)        
         if form.is_valid():
             Obra =  form.save(commit=False) 

@@ -25,7 +25,7 @@ class Obras(models.Model):
     descripcion = models.TextField(default="")
     imagen = models.ImageField(upload_to='Img/')
     idUsuario = models.ForeignKey(User,on_delete=models.CASCADE)
-    estado = models.ForeignKey('Estado', on_delete=models.CASCADE,default=1)
+    estado = models.ForeignKey('Estado', on_delete=models.CASCADE,default=2)
     tipo = models.CharField(max_length=10, choices=TIPO_OBRA_CHOICES, default=1)
     mensaje =models.TextField(default="")
 
