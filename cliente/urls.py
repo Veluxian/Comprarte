@@ -13,12 +13,14 @@ urlpatterns = [
     path('obras', views.obras , name='obras'),
     path('cerrar_sesion', views.cerrar_sesion , name='cerrar_sesion'),
     path('cambio_pass', views.cambio_pass , name='cambio_pass'),
-    path('recuperar_pass', views.recuperar_pass , name='recuperar_pass'),
     path('perfil', views.perfil , name='perfil'),
     path('todo', views.todo, name='todo'),
     
     path('agregarObra', views.agregarObra , name='agregarObra'),
     path('listaObra', views.listaObra , name='listaObra'),
-    path('editarObra', views.editarObra , name='editarObra'),
+    path('editarObra/<int:idObra>/', views.editarObra , name='editarObra'),
+    path('actualizar_obra', views.actualizar_obra, name='actualizar_obra'),
     path('todo', views.todo, name='todo'),
+
+    path('admin', views.admin , name='admin'),
 ]

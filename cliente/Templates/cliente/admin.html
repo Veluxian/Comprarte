@@ -1,0 +1,90 @@
+
+{% extends 'cliente/base.html' %}
+{% load static %}
+{% block contenido %}
+  <div class="container-fluid mt-5 bg-white">
+    <div class="row justify-content-center">
+      <div class="col-3 mt-3 mb-3">
+        <h1>Lista de Obras por Aprobar</h1>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid mt-5 bg-white scrollpsy-test">
+    <div class="row justify-content-center">
+      <div class="d-flex flex-row align-items-center mt-3 ms-3 ">  
+        <table class="table ms-5 table-condensed">
+          <thead>
+            <tr>
+              <th> Arte </th>
+              <th> tipo </th>
+              <th> Descripcion </th>
+              <th> Estado </th>
+              <th> Revision </th>
+            </tr>
+          </thead>
+          <tbody>
+            {% if articulos %}
+            {% for articulo in articulos %}
+            <tr>
+              <td> <img src="{{articulo.imagen.url}}" height="250px" width="250px"> </td>
+              <td> {{articulo.tipo}}</td>
+              <td> {{articulo.descripcion}} </td>
+              <td> {{articulo.estado}} </td>
+              <td>  
+                <button type="button" class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#{{articulo.imagen}}">
+                  Ver más
+                </button>
+              </td>
+            </tr>
+            <div class="modal fade" id="{{articulo.imagen}}" tabindex="-1" aria-labelledby="{{articulo.imagen}}" aria-hidden="true"> 
+              <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="{{articulo.imagen}}"> {{articulo.Obras}}</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <div class="container-fluid">
+                      <div class="row justify-content-center">
+                        <div class="col">
+                          <img src="{{articulo.imagen.url}}" class="img-fluid">
+                        </div>
+                      </div>
+                      <form method="POST" action="{% url 'admin' %}">
+                      <div class="row">
+                        <div class="col">
+                            {% csrf_token %}
+                            <input type="hidden" name="idobra" value="{{articulo.idObras}}">  
+                            <select class="form-select" aria-label="Default select tipoarte" name="estado">
+                              {% if estado_obra %}
+                              {% for estado in estado_obra %}
+                                <option value="{{estado.estado}}">{{estado.estado}}</option>
+                              {% endfor %}
+                              {% endif %}
+                            </select>
+                            <div class="row">
+                              <div class="col">
+                                <textarea name="mensaje" id="mensaje" cols="30" rows="10"></textarea>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col">
+                                <button type="submit">Actualizar</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {% endfor%}
+            {% endif %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+</div>
+{% endblock contenido %}
